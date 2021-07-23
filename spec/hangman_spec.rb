@@ -22,7 +22,7 @@ RSpec.describe Hangman do
     end
   end
 
-  describe "hidden"do
+  describe "hidden" do
     it"returns an array with hidden characters" do
       word = Hangman.new("sun")
 
