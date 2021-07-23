@@ -2,31 +2,36 @@ require_relative "../lib/hangman"
 
 RSpec.describe Hangman do
   describe ".new" do
-    it "instantiates a word object" do
-      expect(Hangman.new("banana")).to be_a(Hangman)
+    it "instantiates a hangman match" do
+      expect(Hangman.new("ice")).to be_a(Hangman)
     end
   end
 
-  describe "#original" do
-    it "returns the original word as a string" do
-      word = Hangman.new("banana")
-      expect(word.original).to eq("banana")
+  describe "#give" do
+    it "plays a match" do
+      game = Hangman.new("ICE")
+
+      game.give("I")
+      game.give("C")
+      result = game.give("E")
+
+      expect(result).to eq(["I", "C", "E"])
     end
-  end
 
-  describe "#split" do
-    it "split word into characters" do
-      word = Hangman.new("sun")
+    context "when the guess is incorrect" do
+      it "concealed guessed letter" do
+        game = Hangman.new("ICE")
 
-      expect(word.split).to eq(["s", "u", "n"])
+        expect(game.give("I")).to eq(["I","_","_"])
+      end
     end
-  end
 
-  describe "hidden" do
-    it"returns an array with hidden characters" do
-      word = Hangman.new("sun")
+    context "when the guess is correct" do
+      it "reveal guessed letter" do
+        game = Hangman.new("ICE")
 
-      expect(word.hidden).to eq(["_", "_", "_"])
+        expect(game.give("A")).to eq(["_","_","_"])
+      end
     end
   end
 end
