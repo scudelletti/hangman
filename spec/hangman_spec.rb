@@ -22,7 +22,7 @@ RSpec.describe Hangman do
       it "concealed guessed letter" do
         game = Hangman.new("ICE")
 
-        expect(game.give("I")).to eq(["I","_","_"])
+        expect(game.give("A")).to eq(["_","_","_"])
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Hangman do
       it "reveal guessed letter" do
         game = Hangman.new("ICE")
 
-        expect(game.give("A")).to eq(["_","_","_"])
+        expect(game.give("I")).to eq(["I","_","_"])
       end
     end
   end
